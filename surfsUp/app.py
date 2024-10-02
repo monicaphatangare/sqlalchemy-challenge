@@ -141,8 +141,12 @@ app.route('/api/v1.0/<start>')
 def start(start):
     session = Session(engine)
 
+    print(start)
+    print(type(start))
+    date_format = "%Y-%m-%d"
+
     list_result = session.query(func.min(Measurement.tobs),func.max(Measurement.tobs),\
-                                func.avg(Measurement.tobs)).filter(Measurement.date >= start).all()
+                                func.avg(Measurement.tobs)).filter(Measurement.date >= date_format).all()
     session.close()
 
     temp = []
@@ -160,8 +164,12 @@ app.route('/api/v1.0/<start>/<end>')
 def start_end(start,end):
     session = Session(engine)
 
+    print(start)
+    print(type(start))
+    date_format = "%Y-%m-%d"
+
     list_results = session.query(func.min(Measurement.tobs),func.max(Measurement.tobs),\
-                                func.avg(Measurement.tobs)).filter(Measurement.date >= start)\
+                                func.avg(Measurement.tobs)).filter(Measurement.date >= date_format)\
                                     .filter(Measurement.date <= end).all()
     session.close()
 
